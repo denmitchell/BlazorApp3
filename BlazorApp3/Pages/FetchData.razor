@@ -1,0 +1,59 @@
+@page "/fetchdata"
+@using BlazorApp3.Models;
+@inject IHttpClientFactory Factory
+
+<h1>Api1 data</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (Results == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>StatusCodeText</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var result in Results)
+            {
+                <tr>
+                    <td>@result.Action</td>
+                    <td>@result.StatusCodeText</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<ActionModel> Results = new List<ActionModel>() ;
+
+    private string[] endpoints = new string[] {
+        "Get/Role","Edit/Role","Delete/Role",
+        "Get/Policy","Edit/Policy","Delete/Policy"
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        var api1 = Factory.CreateClient("Api1");
+        var results2 = await api1.GetAsync($"identity/Get/Role");
+        if (results2.IsSuccessStatusCode)
+            Results.Add(await results2.Content.ReadFromJsonAsync<ActionModel>());
+        else
+            Results.Add(new ActionModel { Action = $"{results2.StatusCode}: Error", StatusCodeText = results2.Content.ReadAsStringAsync().Result });
+        //var results2 = await api1.GetAsync($"identity/Get/Role/Open");
+        //foreach (var endpoint in endpoints) {
+        //    var results = await api1.GetAsync($"identity/{endpoint}");
+        //    if (results.IsSuccessStatusCode)
+        //        Results.Add(await results.Content.ReadFromJsonAsync<ActionModel>());
+        //    else
+        //        Results.Add(new ActionModel { Action = endpoint, StatusCodeText = results.StatusCode.ToString() });
+        //}
+    }
+}
