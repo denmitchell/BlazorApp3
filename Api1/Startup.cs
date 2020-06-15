@@ -34,11 +34,9 @@ namespace Api {
                 options.AddPolicy(name: AllowedOrigins,
                                   builder => {
                                       builder
-                                        .AllowAnyOrigin()
-                                        //.WithOrigins(clients.ToArray())
+                                        .WithOrigins(clients.ToArray())
                                         .AllowAnyMethod()
                                         .AllowAnyHeader();
-                                        //.WithHeaders(HeaderNames.ContentType);
                                   });
             });
 
@@ -54,6 +52,7 @@ namespace Api {
                     //options.ApiSecret = "secret";
                 });
 
+            //todo: add support for default policies
             services.AddAuthorization(
             options =>
             {

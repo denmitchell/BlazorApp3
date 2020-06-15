@@ -21,15 +21,15 @@ namespace BlazorApp3 {
             //builder.Services.AddTransient<CustomAuthorizationMessageHandler>();
 
 
-            builder.Services.AddHttpContextAccessor();
+            //builder.Services.AddHttpContextAccessor();
             builder.Services.AddTransient<CustomAuthorizationMessageHandler>(); //BearerTokenHandler >();// 
 
-            builder.Services.AddHttpClient("IDPClient", client =>
-            {
-                client.BaseAddress = new Uri(builder.Configuration["OidcProvider:Authority"]);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
-            });
+            //builder.Services.AddHttpClient("IDPClient", client =>
+            //{
+            //    client.BaseAddress = new Uri(builder.Configuration["OidcProvider:Authority"]);
+            //    client.DefaultRequestHeaders.Clear();
+            //    client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+            //});
 
             foreach (var api in apis) {
                 builder.Services.AddHttpClient(api.Key, client =>

@@ -12,19 +12,19 @@ namespace Api.Controllers {
             Debug.WriteLine("IdentityController c_tor called");
         }
 
-        [Authorize(Roles = "MvcApp.Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet("Delete/Role")]
         public IActionResult DeleteRole() {
             return new JsonResult(new ActionModel { Action = "Delete/Role", StatusCodeText = "Success" });
         }
 
-        [Authorize(Roles = "MvcApp.Admin,MvcApp.User")]
+        [Authorize(Roles = "Admin,User")]
         [HttpGet("Edit/Role")]
         public IActionResult EditRole() {
             return new JsonResult(new ActionModel { Action = "Edit/Role", StatusCodeText = "Success" });
         }
 
-        [Authorize(Roles = "MvcApp.Admin,MvcApp.User,MvcApp.Readonly")]
+        [Authorize(Roles = "Admin,User,Readonly")]
         [HttpGet("Get/Role")]
         public IActionResult GetRole() {
             return new JsonResult(new ActionModel { Action = "Get/Role", StatusCodeText = "Success" });
