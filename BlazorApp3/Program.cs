@@ -26,7 +26,7 @@ namespace BlazorApp3 {
 
             builder.Services.AddTransient<CustomAuthorizationMessageHandler>();
 
-            //TODO: determine if this works as needed when you have more than one API with different scopes 
+            //THIS DOES NOT APPEAR TO WORK
             //builder.Services.AddTransient(sp => {
             //    var handler = sp.GetRequiredService<AuthorizationMessageHandler>()
             //        .ConfigureHandler(
@@ -36,18 +36,16 @@ namespace BlazorApp3 {
             //});
 
 
-            //TODO: determine if this works as needed when you have more than one API with different scopes 
             foreach (var api in apis) {
                 builder.Services.AddHttpClient(api.Key, client =>
                 {
                     client.BaseAddress = new Uri(api.Value);
                     client.DefaultRequestHeaders.Clear();
                     client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
-                }).AddHttpMessageHandler<CustomAuthorizationMessageHandler>(); //AuthorizationMessageHandler>(); 
+                }).AddHttpMessageHandler<CustomAuthorizationMessageHandler>(); 
             }
 
 
-            //TODO: determine if this works as needed when you have more than one API with different scopes 
             builder.Services.AddOidcAuthentication(options => {
                 // see https://aka.ms/blazor-standalone-auth
                 builder.Configuration.Bind("OidcProvider", options.ProviderOptions);
