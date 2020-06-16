@@ -4,14 +4,9 @@
 
 <h1>Api1 data</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
-
-@if (Results == null)
-{
+@if (Api1Results == null) {
     <p><em>Loading...</em></p>
-}
-else
-{
+} else {
     <table class="table">
         <thead>
             <tr>
@@ -20,8 +15,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var result in Results)
-            {
+            @foreach (var result in Api1Results) {
                 <tr>
                     <td>@result.Action</td>
                     <td>@result.StatusCodeText</td>
@@ -31,23 +25,62 @@ else
     </table>
 }
 
+<h1>Api2 data</h1>
+
+@if (Api2Results == null) {
+    <p><em>Loading...</em></p>
+} else {
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Red</th>
+                <th>Green</th>
+                <th>Blue</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var result in Api2Results) {
+            <tr>
+                <td>@result.Action</td>
+                <td>@result.Red</td>
+                <td>@result.Green</td>
+                <td>@result.Blue</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
 @code {
-    private List<ActionModel> Results = new List<ActionModel>() ;
+    private List<ActionModel> Api1Results = new List<ActionModel>();
+    private List<ColorModel> Api2Results = new List<ColorModel>();
 
     private string[] endpoints = new string[] {
         "Get/Role","Edit/Role","Delete/Role",
         "Get/Policy","Edit/Policy","Delete/Policy"
     };
 
-    protected override async Task OnInitializedAsync()
-    {
+    protected override async Task OnInitializedAsync() {
         var api1 = Factory.CreateClient("Api1");
         foreach (var endpoint in endpoints) {
             var results = await api1.GetAsync($"identity/{endpoint}");
             if (results.IsSuccessStatusCode)
-                Results.Add(await results.Content.ReadFromJsonAsync<ActionModel>());
+                Api1Results.Add(await results.Content.ReadFromJsonAsync<ActionModel>());
             else
-                Results.Add(new ActionModel { Action = $"{results.StatusCode}: Error", StatusCodeText = results.Content.ReadAsStringAsync().Result });
+                Api1Results.Add(new ActionModel { Action = $"{results.StatusCode}: Error", StatusCodeText = "" });
         }
+
+        var api2 = Factory.CreateClient("Api2");
+        foreach (var endpoint in endpoints) {
+            var results = await api2.GetAsync($"color/{endpoint}");
+            if (results.IsSuccessStatusCode)
+                Api2Results.Add(await results.Content.ReadFromJsonAsync<ColorModel>());
+            else
+                Api2Results.Add(new ColorModel { Action = $"{results.StatusCode}: Error", Red = 0, Green = 0, Blue = 0 });
+        }
+
     }
+
 }

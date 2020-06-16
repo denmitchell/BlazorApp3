@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.36
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp3", "BlazorApp3\BlazorApp3.csproj", "{6AA8C083-2FD1-4FE5-A220-CEE2D8CB735B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp3", "BlazorApp3\BlazorApp3.csproj", "{6AA8C083-2FD1-4FE5-A220-CEE2D8CB735B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EDennis.AspNet.Base", "EDennis.AspNet.Base\EDennis.AspNet.Base.csproj", "{C0861C78-3213-40A9-9564-4349245E2065}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EDennis.AspNetIdentityServer", "EDennis.AspNetIdentityServer\EDennis.AspNetIdentityServer.csproj", "{BEF8CF84-9417-4BA7-9CB6-DD965EB6BC41}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api1", "Api1\Api1.csproj", "{0DAA71BB-A3AE-4B78-9DB5-DB0A7EA7D553}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api2", "Api2\Api2.csproj", "{FE5D5770-EBF2-4B45-99CF-44D103DB1499}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0DAA71BB-A3AE-4B78-9DB5-DB0A7EA7D553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DAA71BB-A3AE-4B78-9DB5-DB0A7EA7D553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DAA71BB-A3AE-4B78-9DB5-DB0A7EA7D553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE5D5770-EBF2-4B45-99CF-44D103DB1499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE5D5770-EBF2-4B45-99CF-44D103DB1499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE5D5770-EBF2-4B45-99CF-44D103DB1499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE5D5770-EBF2-4B45-99CF-44D103DB1499}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

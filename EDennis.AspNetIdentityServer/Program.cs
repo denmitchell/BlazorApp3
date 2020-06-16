@@ -152,6 +152,15 @@ namespace EDennis.AspNetIdentityServer {
                 roleManager.AddClaimAsync(user2, new Claim("user_scope", "Api1.*.Edit*")).Wait();
                 roleManager.AddClaimAsync(readOnly2, new Claim("user_scope", "Api1.*.Get*")).Wait();
 
+
+                roleManager.AddClaimAsync(admin2, new Claim("user_scope", "Api2.*.Get*")).Wait();
+                roleManager.AddClaimAsync(admin2, new Claim("user_scope", "Api2.*.Edit*")).Wait();
+                roleManager.AddClaimAsync(admin2, new Claim("user_scope", "Api2.*.Delete*")).Wait();
+                roleManager.AddClaimAsync(user2, new Claim("user_scope", "Api2.*.Get*")).Wait();
+                roleManager.AddClaimAsync(user2, new Claim("user_scope", "Api2.*.Edit*")).Wait();
+                roleManager.AddClaimAsync(readOnly2, new Claim("user_scope", "Api2.*.Get*")).Wait();
+
+
                 context.SaveChanges();
 
 

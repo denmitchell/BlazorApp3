@@ -30,6 +30,14 @@ namespace EDennis.AspNetIdentityServer {
                     Scopes = {
                         new Scope("Api1.*.Get*"), new Scope("Api1.*.Edit*"), new Scope("Api1.*.Delete*")
                     }
+                },
+                new ApiResource("Api2", "Api2", new List<string>() { "role" })
+                {
+                    //ApiSecrets = { new Secret("secret".Sha256()) },
+                    UserClaims = { "Name","Email","role","user_scope" },
+                    Scopes = {
+                        new Scope("Api2.*.Get*"), new Scope("Api2.*.Edit*"), new Scope("Api2.*.Delete*")
+                    }
                 }
             };
 
@@ -100,6 +108,7 @@ namespace EDennis.AspNetIdentityServer {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "Api1", "Api1.*.Get*", "Api1.*.Edit*", "Api1.*.Delete*",
+                        "Api2", "Api2.*.Get*", "Api2.*.Edit*", "Api2.*.Delete*",
                         "roles"
                     },
 
